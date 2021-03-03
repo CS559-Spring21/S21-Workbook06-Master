@@ -82,9 +82,9 @@ function draw(canvas, param) {
   // WARNING: makeCheckbox adds a "check-" to the id of the checkboxes
   //
   // lines to uncomment to make checkboxes
-  // makeCheckbox("simple-track",false);
-  // makeCheckbox("arc-length",true);
-  // makeCheckbox("bspline",false);
+  // makeCheckbox("simple-track");
+  // makeCheckbox("arc-length");
+  // makeCheckbox("bspline");
 
   // helper function - set the slider to have max = # of control points
   function setNumPoints() {
