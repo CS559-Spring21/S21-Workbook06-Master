@@ -77,8 +77,9 @@ function draw(canvas, param) {
 
   // note: if you add these features, uncomment the lines for the checkboxes
   // in your code, you can test if the checkbox is checked by something like:
-  // document.getElementById("simple-track").checked
+  // document.getElementById("check-simple-track").checked
   // in your drawing code
+  // WARNING: makeCheckbox adds a "check-" to the id of the checkboxes
   //
   // lines to uncomment to make checkboxes
   // makeCheckbox("simple-track",false);
