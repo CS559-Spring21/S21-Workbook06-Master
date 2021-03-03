@@ -73,7 +73,7 @@ function draw(canvas, param) {
   // create a UI
   let runcavas = new RunCanvas(canvas, wrapDraw);
   // now we can connect the draw function correctly
-  slider = runcanvas.range;
+  slider = runcavas.range;
 
   // note: if you add these features, uncomment the lines for the checkboxes
   // in your code, you can test if the checkbox is checked by something like:
