@@ -44,7 +44,7 @@ export class RunCanvas {
       throw "RunCanvas without a Canvas to attach to!";
     }
     if (!canvasName) {
-      canvasName = "canvas-" + performance.now().toString();
+      canvasName = "canvas-" + Math.trunc(performance.now()).toString();
       console.log("RunCanvas with an unnamed canvas - naming it " + canvasName);
       canvas.id = canvasName;
     }
@@ -53,6 +53,9 @@ export class RunCanvas {
     this.canvasName = canvasName;
     this.drawFunc = drawFunc;
     this.noloop = noLoop;
+
+    // some style parameters
+    this.digits = 2;
 
     // keep track of time - so we can measure step times
     this.lastTime = undefined;
@@ -112,10 +115,10 @@ export class RunCanvas {
     this.range.setAttribute("step", String(step));
   }
 
+  // set the value of the slide - make sure to update everything
   setValue(value) {
-    let valString = String(value);
-    this.range.value = valString;
-    this.text.value = valString;
+    this.range.value = String(value);;
+    this.text.value = value.toFixed(this.digits);
     if (this.drawFunc) {
       this.drawFunc(this.canvas, value);
     }
@@ -130,10 +133,11 @@ export class RunCanvas {
    */
   tick(timestamp) {
     // convert delta to "frames" (at 60fps)
-    const delta = ((timestamp && this.lastTime) ? timestamp-this.lastTime : 0) * 1000.0/60.0;
+    const delta = ((timestamp && this.lastTime) ? timestamp-this.lastTime : 0) * 1.0/60.0;
+    this.lastTime = timestamp;
     let maxV = Number(this.range.max);
     let stepV = Number(this.range.step);
-    let value = Number(this.range.value) + stepV;
+    let value = Number(this.range.value) + stepV * delta;
     if (this.noloop) {
       if (value >= maxV) {
         this.runbutton.checked = false;
